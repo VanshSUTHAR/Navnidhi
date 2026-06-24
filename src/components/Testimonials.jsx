@@ -26,8 +26,8 @@ export default function Testimonials() {
       <div className="absolute inset-0 line-grid pointer-events-none" style={{ opacity: 0.5 }} />
       <div className="section-container relative z-10">
         <SectionHeading
-          eyebrow="Client Reviews"
-          title="What Our Clients Say"
+          eyebrow="Customer Reviews"
+          title="What Our Customers Say"
           subtitle="Real feedback from contractors, hardware retailers, and civil engineers across Ahmedabad and Gujarat."
           center
         />

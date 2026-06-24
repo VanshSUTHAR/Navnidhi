@@ -7,7 +7,8 @@ export default function SectionHeading({ eyebrow, title, subtitle, light = false
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      style={{ marginBottom: '3rem', textAlign: center ? 'center' : 'left' }}
+      className={`section-heading-wrap ${center ? 'text-center' : 'text-left'}`}
+      style={{ textAlign: center ? 'center' : 'left' }}
     >
       {eyebrow && (
         <div style={{ display: 'flex', justifyContent: center ? 'center' : 'flex-start', marginBottom: '1rem' }}>
@@ -15,15 +16,11 @@ export default function SectionHeading({ eyebrow, title, subtitle, light = false
         </div>
       )}
       <h2
+        className={`section-heading-title ${light ? 'text-ink-50' : 'text-ink-950'}`}
         style={{
-          fontFamily: 'Syne, sans-serif',
-          fontWeight: 800,
-          fontSize: 'clamp(1.625rem, 3vw + 0.875rem, 3rem)',
-          letterSpacing: '-0.025em',
-          lineHeight: 1.15,
           color: light ? '#FAFAFA' : '#09090B',
-          marginBottom: subtitle ? '1rem' : 0,
-          maxWidth: center ? '38rem' : 'none',
+          marginBottom: subtitle ? '1.25rem' : 0,
+          maxWidth: center ? '58rem' : 'none',
           marginLeft: center ? 'auto' : '0',
           marginRight: center ? 'auto' : '0',
         }}
@@ -32,13 +29,12 @@ export default function SectionHeading({ eyebrow, title, subtitle, light = false
       </h2>
       {subtitle && (
         <p
+          className={`section-heading-sub ${light ? 'text-ink-400' : 'text-ink-600'}`}
           style={{
-            fontSize: '1rem',
             color: light ? '#A1A1AA' : '#52525B',
-            lineHeight: 1.7,
-            maxWidth: center ? '40rem' : '36rem',
-            margin: center ? '0 auto' : '0',
-            fontWeight: 400,
+            maxWidth: center ? '44rem' : '36rem',
+            marginLeft: center ? 'auto' : '0',
+            marginRight: center ? 'auto' : '0',
           }}
         >
           {subtitle}

@@ -16,9 +16,9 @@ export default function ProductCategories() {
       <div className="absolute inset-0 dot-grid-light pointer-events-none" style={{ opacity: 0.4 }} />
       <div className="section-container relative z-10">
         <SectionHeading
-          eyebrow="Product Range"
-          title={<>Complete Plumbing &<br />Industrial Supplies</>}
-          subtitle="Comprehensive wholesale products sourced directly from Veen and Kankai factories for maximum structural reliability."
+          eyebrow="Our Products"
+          title={<>Premium Plumbing & Industrial Solutions</>}
+          subtitle="Explore our extensive range of high-quality plumbing, sanitary, piping, and industrial products, sourced directly from trusted manufacturers like Veen and Kankai to ensure superior durability, performance, and reliability."
           light
           center
         />

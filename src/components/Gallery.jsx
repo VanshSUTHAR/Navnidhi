@@ -12,7 +12,7 @@ export default function Gallery() {
       <div className="absolute inset-0 dot-grid-light pointer-events-none" style={{ opacity: 0.4 }} />
       <div className="section-container relative z-10">
         <SectionHeading
-          eyebrow="Visual Portfolio"
+          eyebrow="Products"
           title="Product Showcase"
           subtitle="A sample of authentic brass cocks, couplers, rigid pipes, and high-pressure fittings supplied to commercial sites."
           light

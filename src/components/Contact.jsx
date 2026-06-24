@@ -50,7 +50,7 @@ export default function Contact() {
       <div className="absolute pointer-events-none" style={{ top: '20%', left: '10%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%)' }} />
       <div className="section-container relative z-10">
         <SectionHeading
-          eyebrow="Get In Touch"
+          eyebrow="Contact us"
           title="Direct Wholesale Enquiries"
           subtitle="Fill out the form or reach us directly. Our sales team compiles rate sheets within 24 hours."
           light
@@ -134,7 +134,7 @@ export default function Contact() {
                 <div>
                   <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#52525B', marginBottom: 4 }}>{label}</div>
                   {href ? (
-                    <a href={href} style={{ fontSize: '0.875rem', fontWeight: 500, color: '#FAFAFA', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color='#F59E0B'} onMouseLeave={e => e.target.style.color='#FAFAFA'}>
+                    <a href={href} style={{ fontSize: '0.875rem', fontWeight: 500, color: '#FAFAFA', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#F59E0B'} onMouseLeave={e => e.target.style.color = '#FAFAFA'}>
                       {value}
                     </a>
                   ) : (
