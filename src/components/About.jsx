@@ -60,6 +60,7 @@ export default function About() {
                     alt={img.name}
                     width={250}
                     height={250}
+                    decoding="async"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
                     className="group-hover:scale-105"
                     loading="lazy"

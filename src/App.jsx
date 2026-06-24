@@ -1,15 +1,17 @@
+import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import ProductCategories from './components/ProductCategories';
-import WhyChooseUs from './components/WhyChooseUs';
-import FeaturedProducts from './components/FeaturedProducts';
-import Stats from './components/Stats';
-import Industries from './components/Industries';
-import Testimonials from './components/Testimonials';
-import Gallery from './components/Gallery';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+
+const About = lazy(() => import('./components/About'));
+const ProductCategories = lazy(() => import('./components/ProductCategories'));
+const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
+const FeaturedProducts = lazy(() => import('./components/FeaturedProducts'));
+const Stats = lazy(() => import('./components/Stats'));
+const Industries = lazy(() => import('./components/Industries'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Gallery = lazy(() => import('./components/Gallery'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function App() {
   return (
@@ -17,17 +19,21 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Stats />
-        <ProductCategories />
-        <FeaturedProducts />
-        <WhyChooseUs />
-        <Industries />
-        <Testimonials />
-        <Gallery />
-        <Contact />
+        <Suspense fallback={null}>
+          <About />
+          <Stats />
+          <ProductCategories />
+          <FeaturedProducts />
+          <WhyChooseUs />
+          <Industries />
+          <Testimonials />
+          <Gallery />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import SectionHeading from './ui/SectionHeading';
@@ -14,6 +14,39 @@ function validate(f) {
   if (f.email && !/^\S+@\S+\.\S+$/.test(f.email)) e.email = 'Enter a valid email';
   if (!f.message.trim()) e.message = 'Please specify your order/enquiry details';
   return e;
+}
+
+function LazyMap() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="map-wrap">
+      {visible ? (
+        <iframe
+          title="Navnidhi Trading Co. Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29408.62617413621!2d72.43836!3d22.44135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ca7b50eb4a5%3A0x1fadbaa6a3abfe1e!2sDholka%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1719000000000!5m2!1sen!2sin"
+          width="100%" height="220" style={{ border: 0, filter: 'invert(0.88) hue-rotate(180deg) saturate(1.1)', display: 'block' }}
+          allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+        />
+      ) : (
+        <div style={{ width: '100%', height: 220, background: '#18181B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#3F3F46' }}>Loading map…</span>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function Contact() {
@@ -144,14 +177,7 @@ export default function Contact() {
               </div>
             ))}
 
-            <div className="map-wrap">
-              <iframe
-                title="Navnidhi Trading Co. Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29408.62617413621!2d72.43836!3d22.44135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ca7b50eb4a5%3A0x1fadbaa6a3abfe1e!2sDholka%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1719000000000!5m2!1sen!2sin"
-                width="100%" height="220" style={{ border: 0, filter: 'invert(0.88) hue-rotate(180deg) saturate(1.1)', display: 'block' }}
-                allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <LazyMap />
           </motion.div>
         </div>
       </div>

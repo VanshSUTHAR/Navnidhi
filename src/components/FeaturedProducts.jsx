@@ -79,7 +79,7 @@ export default function FeaturedProducts() {
                   style={{ overflow: 'hidden', padding: 0 }}
                 >
                   <div className="product-img-wrap" style={{ position: 'relative' }}>
-                    <img src={product.image} alt={product.name} width={300} height={300} loading="lazy" onError={(e) => { e.target.style.opacity = 0; }} />
+                    <img src={product.image} alt={product.name} width={300} height={300} loading="lazy" decoding="async" onError={(e) => { e.target.style.opacity = 0; }} />
                     {/* Badge */}
                     <span className="badge" style={{ position: 'absolute', top: 10, left: 10, background: badge.bg, borderColor: badge.border, color: badge.color }}>
                       {product.badge}

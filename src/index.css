@@ -560,6 +560,16 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+/* ─── MOBILE PERFORMANCE ─── */
+@media (max-width: 768px) {
+  .nav-glass {
+    backdrop-filter: blur(12px);
+  }
+  .nav-glass-dark {
+    backdrop-filter: blur(12px);
+  }
+}
+
 /* ─── REDUCE MOTION ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

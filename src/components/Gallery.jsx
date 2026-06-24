@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn } from 'lucide-react';
+import { X, ZoomIn, ChevronDown } from 'lucide-react';
 import SectionHeading from './ui/SectionHeading';
 import { GALLERY_IMAGES } from '../data/products';
 
+const INITIAL_COUNT = 8;
+
 export default function Gallery() {
   const [lightbox, setLightbox] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleImages = showAll ? GALLERY_IMAGES : GALLERY_IMAGES.slice(0, INITIAL_COUNT);
 
   return (
     <section id="gallery" style={{ background: '#09090B', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
@@ -20,9 +25,9 @@ export default function Gallery() {
         />
 
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5" style={{ columnGap: '0.875rem' }}>
-          {GALLERY_IMAGES.map((img, i) => (
+          {visibleImages.map((img, i) => (
             <motion.div
-              key={i}
+              key={img.alt}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
@@ -40,7 +45,7 @@ export default function Gallery() {
               }}
             >
               <div className="gallery-img" style={{ background: '#18181B' }}>
-                <img src={img.src} alt={img.alt} width={150} height={150} loading="lazy" onError={(e) => { e.target.style.opacity = 0; }} />
+                <img src={img.src} alt={img.alt} width={150} height={150} loading="lazy" decoding="async" onError={(e) => { e.target.style.opacity = 0; }} />
               </div>
               <div className="gallery-label" style={{ color: '#A1A1AA', background: '#18181B', borderTop: '1px solid #27272A' }}>
                 {img.alt}
@@ -49,6 +54,19 @@ export default function Gallery() {
           ))}
         </div>
 
+        {!showAll && GALLERY_IMAGES.length > INITIAL_COUNT && (
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <button
+              onClick={() => setShowAll(true)}
+              className="btn-ghost-light"
+              style={{ padding: '0.75rem 1.5rem', fontSize: '0.8125rem' }}
+            >
+              Show More Products ({GALLERY_IMAGES.length - INITIAL_COUNT} more)
+              <ChevronDown size={14} />
+            </button>
+          </div>
+        )}
+
         {/* Lightbox */}
         <AnimatePresence>
           {lightbox && (
@@ -56,7 +74,7 @@ export default function Gallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(9,9,11,0.85)', backdropFilter: 'blur(12px)' }}
+              style={{ position: 'fixed', inset: 0, zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(9,9,11,0.92)' }}
               onClick={() => setLightbox(null)}
             >
               <motion.div

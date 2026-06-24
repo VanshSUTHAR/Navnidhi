@@ -43,6 +43,9 @@ export default function ProductCategories() {
                     <img
                       src={cat.image}
                       alt={cat.name}
+                      width={250}
+                      height={141}
+                      decoding="async"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.45s ease', display: 'block' }}
                       className="group-hover:scale-105"
                       loading="lazy"
